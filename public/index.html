@@ -1,0 +1,180 @@
+<html>
+<header>
+    <style>
+        .bloco {
+            margin: 10px 0px 0px 10px;
+            width:max-content;
+        }
+
+        .msg-user {
+            color: black;
+            border-style: solid;
+            border-width: 0px;
+            border-radius: 20px 20px 20px 0px;
+            background-color: lightskyblue;
+            padding: 20px;
+            margin-bottom: 10px;
+            max-height: max-content;
+            width: fit-content;
+            text-align: left;
+        }
+
+        .msg-outher-user {
+            color: black;
+            border-style: solid;
+            border-color: black;
+            border-width: 1px;
+            border-radius: 20px 20px 20px 0px;
+            background-color: rgb(252, 252, 252);
+            padding: 20px;
+            margin-bottom: 10px;
+            max-height: max-content;
+            width: fit-content;
+            text-align: left;
+        }
+
+        .msg-server {
+            border-style: solid;
+            border-color: black;
+            border-width: 1px;
+            border-radius: 20px 20px 20px 0px;
+            width: max-content;
+            margin: 10px 0px;
+            padding: 10px;
+            background-color: rgb(252, 252, 252);
+            max-width: 90%;
+            color: lightcoral;
+        }
+
+        .clientMsg {
+            color: black;
+        }
+
+        #chat {
+            background-image: url("https://media.istockphoto.com/vectors/set-of-contact-us-and-support-icons-vector-pattern-design-vector-id1183632265?k=20&m=1183632265&s=612x612&w=0&h=WrdRJWCQdgJbjFt9xaJ1ycGps16x2Xb7M1EwcfNFNcQ=") ;
+            border-style: solid;
+            border-color: black;
+            border-width: 1px;
+            height: 500px;
+            width: 50%;
+            margin: 10px 10px 0px 10px;
+            padding: 10px;
+            overflow-y: scroll;
+            flex-direction: column;
+        }
+
+        #sender {
+            resize: node;
+        }
+
+    </style>
+</header>
+<body>
+    
+    <!-- CAMPO CHAT AREA  -->
+    <div id="chat"></div>
+    
+    <!-- CAMPO SET AND SEND MSG   -->
+    <div class="bloco">
+        <textarea id="sender" cols="40" rows="5" maxlength="419" wrap="hard"></textarea></textarea>
+        <button id="buttonSend">SEND</button>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web-socket-js/1.0.0/web_socket.min.js"></script>
+    <script>
+        
+        var HOST = location.origin.replace(/^http/, 'ws')
+        const cliente = new WebSocket(HOST);
+        let myId;
+        
+        // iniciando conexão com servidor WebSocket
+        cliente.onopen = () => {
+            cliente.onmessage = msg => {
+                let data = JSON.parse(msg.data);
+
+                switch(data.type) {
+                    case 'set-id':
+                        myId = data.content.id;
+                        break;
+                    case 'chat':
+                    let chat = document.getElementById("chat");
+                        chat.innerHTML += msgOutherUserTracted(data.content.message);
+                        chat.scrollTo(chat.scrollWidth, chat.scrollHeight + 1000);
+                        break;
+                    default:
+                        break;
+                }
+
+                console.log('meu id é', myId);
+            }
+        }
+
+
+        // Mandando menssagem
+        const buttonSend = document.getElementById("buttonSend");
+    
+        buttonSend.addEventListener('click', () => {
+            let msg = document.getElementById("sender").value;
+            let charEpecial = "&#13;&#10;";
+            let newMsg = "";
+            let cont = 0;
+
+            for (let i=0; i < (msg.length + 1); i++) {
+                if (i < msg.length) {
+                    if (cont === 39) {
+                        newMsg += charEpecial;
+                        cont = 0;
+                    } else {
+                        newMsg += msg[i];
+                        cont ++;
+                    }
+                }
+            }
+
+            document.getElementById("chat").innerHTML += msgClientTracted(newMsg);
+            document.getElementById("sender").value = '';
+
+            let chat = document.getElementById("chat");
+            chat.scrollTo(chat.scrollWidth, chat.scrollHeight + 1000);
+
+            cliente.send(JSON.stringify({
+                content: { message: newMsg, id: myId },
+                type:'chat'
+            }));
+
+        });
+
+
+
+
+
+        // funçõs de formatação
+        function msgClientTracted(msg) {
+            return (`
+                <div class="msg-user">
+                    <div>${msg}</div>
+                </div>
+            `);
+        }
+
+        function msgServerTracted(msg) {
+            return (`
+                <div class="msg-server">
+                    <div>${msg}</div>
+                </div>
+            `);
+        }
+
+        function msgOutherUserTracted(msg) {
+            return (`
+                <div class="msg-outher-user">
+                    <div>${msg}</div>
+                </div>
+            `);
+        }
+
+    </script>
+</body>
+</html>
+
