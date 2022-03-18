@@ -13,7 +13,9 @@ const app = express()
 const server = new WebSocketServer({ server: app });
 
 // WebSocket Events
-server.on('connection', ws => {
+server.on('connection', (ws, request) => {
+    console.log(request.client.remoteAddress);
+
     ws.id = !ws.id ? parseInt(Math.random() * 1000).toString() : ws.id;
 
     console.log(`client ${ws.id} connected`);
