@@ -1,6 +1,8 @@
 # CHAT-APP-WEBSOCKET
 Mini Projeto de um chat-app usando o protocolo WebSocket através da lib 'ws' do node.js
 
+> *Obs* o intuito deste projeto não é o frontend e sim o backend com a criação e configuração do servidor *websocket*, usei o minimo de front apenas para possibilitar o uso to app pelo navegador e assim ser mais acessivel ao inves de um executavel.
+
 <br>
 
 ## 🎯 Objetivo
