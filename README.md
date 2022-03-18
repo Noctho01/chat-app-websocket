@@ -5,6 +5,8 @@ Mini Projeto de um chat-app usando o protocolo WebSocket através da lib 'ws' do
 
 <br>
 
+[Link para acessar ao chat-app hospedado na heroku](https://chat-app-websocket-v1.herokuapp.com/)
+
 ## 🎯 Objetivo
 Praticar o que estudei sobre o protocolo *websocket*.
 
@@ -28,7 +30,7 @@ Responsavel por disponibilizar o uso do protocolo *websocket* na ferramenta *Nod
 
 ![](/docs/print.png)
 
-[Link para acessar ao chat-app hospedado na heroku]()
+[Link para acessar ao chat-app hospedado na heroku](https://chat-app-websocket-v1.herokuapp.com/)
 
 ***Dica***: *caso queira testar e não tem paciencia para esperar algum outro usuario entrar no chat, acesse de outros dispositivos ou novas abas de seu navegador.* 🤳
 
