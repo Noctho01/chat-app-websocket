@@ -1,5 +1,5 @@
 <html>
-<header>
+<head>
     <style>
         .bloco {
             margin: 10px 0px 0px 10px;
@@ -68,7 +68,7 @@
         }
 
     </style>
-</header>
+</head>
 <body>
     
     <!-- CAMPO CHAT AREA  -->
@@ -98,7 +98,7 @@
                         myId = data.content.id;
                         break;
                     case 'chat':
-                    let chat = document.getElementById("chat");
+                        let chat = document.getElementById("chat");
                         chat.innerHTML += msgOutherUserTracted(data.content.message);
                         chat.scrollTo(chat.scrollWidth, chat.scrollHeight + 1000);
                         break;

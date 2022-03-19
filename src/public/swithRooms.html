@@ -1,0 +1,118 @@
+<html>
+<head>
+    <style>
+
+        body {
+            background-color: antiquewhite;
+        }
+
+        #container {
+            border-width: 0px;
+            border-style: solid;
+            border-radius: 10px;
+            background-color: aliceblue;
+            width: fit-content;
+            padding: 0px 20px 0px 20px;
+            position: absolute;
+            top: 50%;
+            left: 40%;
+            margin-top: -25%;
+        }
+
+        .room {
+            border-style: solid;
+            border-width: 1px;
+            border-radius: 10px;
+            margin: 20px 0px 20px 0px;
+            padding: 20px;
+        }
+
+        .roomName {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        .inLimit_yes {
+            border-style: solid;
+            border-width: 0px;
+            border-radius: 25px;
+            padding: 5px;
+            display: inline-block;
+            font-weight: 800;
+            color: darkblue;
+            background-color: greenyellow;
+        }
+
+        .inLimit_no {
+            border-style: solid;
+            border-width: 1px;
+            border-radius: 25px;
+            padding: 5px;
+            display: inline-block;
+            color: aliceblue;
+            background-color: brown;
+        }
+
+        .roomLimite {
+            display: inline-block;
+        }
+
+        .inRoom {
+            display: inline-block;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="container">
+    </div>
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web-socket-js/1.0.0/web_socket.min.js"></script>
+    <script>
+        //var HOST = location.origin.replace(/^http/, 'ws')
+        //const cliente = new WebSocket(HOST);
+        const client = new WebSocket('ws://localhost:3000');
+        
+        const container = document.getElementById("container");
+
+        client.onopen = () => {
+            client.onmessage = msg => {
+                const data = JSON.parse(msg.data);
+
+                console.log(data)
+
+                switch(data.header.type) {
+                    case 'list-rooms':
+                        data.content.rooms.forEach(room => {
+                            container.innerHTML += divRoom(room);
+                        });
+                        break;
+                    default:
+                        break;
+                }
+            } 
+        }
+
+        //client.close();
+
+        function divRoom(room) {
+            const inLimit = room.inRoom < room.limitPlaces
+                ? "inLimit_yes"
+                : "inLimit_no"
+
+            return (`
+                <div class="room">
+                    <div class="roomName">${room.roomName}</div>
+                    <div class=${inLimit}>    
+                        <div class="inRoom">${room.inRoom}</div>
+                        /
+                        <div class="roomLimite">${room.limitPlaces}</div>
+                    </div>
+                </div>
+            `);
+        }
+    </script>
+</body>
+</html>

@@ -1,45 +1,26 @@
-const { WebSocketServer } = require('ws');
-const express = require('express');
-const path = require('path');
+import { fileURLToPath } from 'url';
+import WebSocketRuning from './ws.js';
+import express from 'express';
+import path from 'path';
 
-// create and config http server with express
-const indexPath = '/index.html';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const PORT = process.env.PORT || 3000;
+
+const indexPath = '/index.html';
+const options = { root: path.join(__dirname, 'public') };
+
 const app = express()
-    .use((req, res) => res.sendFile(indexPath, {root: path.join(__dirname, 'public')}))
+    .use(main)
     .listen(PORT, () => console.log(`Server listening in PORT ${PORT}`));
 
-// create ws server with app:express instance
-const server = new WebSocketServer({ server: app });
+function main(req, res, next) {
+    try {
+        res.sendFile(indexPath, options);
+    } catch (err) {
+        next(err);
+    }
+}
 
-// WebSocket Events
-server.on('connection', (ws, request) => {
-    console.log(request.client.remoteAddress);
-
-    ws.id = !ws.id ? parseInt(Math.random() * 1000).toString() : ws.id;
-
-    console.log(`client ${ws.id} connected`);
-
-    ws.send(JSON.stringify({
-        content: { id: ws.id },
-        type: 'set-id'
-    }));
-
-    ws.on('message', msg => {
-        let data = JSON.parse(msg.toString());
-        
-        server.clients.forEach(client => {
-            if (client.id != data.content.id) {
-                console.log(`client ${client.id} send msg "${data.content.message}"`);
-                client.send(JSON.stringify({
-                    content: data.content,
-                    type: 'chat'
-                }));
-            }
-        }); 
-    });
-
-    ws.on('close', () => {
-        console.log(`client ${ws.id} desconnected`);
-    });
-});
+WebSocketRuning(app);

@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  chat-app:
+    build: .
+    container_name: "chat-app"
+    ports:
+      - 3000:3000
+
+networks:
+  default:
+    external:
+      name: minha-rede-bridge
+    

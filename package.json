@@ -2,12 +2,12 @@
   "name": "ws-project",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/server.js",
-    "ws": "nodemon src/server.js",
-    "app": "nodemon src/app.js"
+    "app": "nodemon src/server.js"
   },
   "keywords": [],
   "author": "",
