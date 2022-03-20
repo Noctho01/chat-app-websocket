@@ -12,6 +12,7 @@ const indexPath = '/index.html';
 const options = { root: path.join(__dirname, 'public') };
 
 const app = express()
+    .use(express.static(options.root))
     .use(main)
     .listen(PORT, () => console.log(`Server listening in PORT ${PORT}`));
 

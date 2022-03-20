@@ -5,11 +5,23 @@ export default class ClientHeader {
         this._room = null;
     }
 
-    set clientName(name) { this._name = name }
-    set room(room) { this._room = room }
-    set clientId(id) { this._id = id }
+    set clientName(name) {
+        this._name = name
+    }
+    set room(room) {
+        this._room = room
+    }
+    set clientId(id) {
+        this._id = id
+    }
 
-    get clientName() { return this._name }
-    get clientId() { return this._id }
-    get room() { return this._room }
+    get clientName() {
+        return this._name
+    }
+    get clientId() {
+        return this._id
+    }
+    get room() {
+        return this._room
+    }
 }

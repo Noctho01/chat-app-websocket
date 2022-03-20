@@ -1,0 +1,140 @@
+body {
+    background-color: antiquewhite;
+}
+
+.msg-user {
+    color: black;
+    border-style: solid;
+    border-width: 0px;
+    border-radius: 20px 20px 20px 0px;
+    background-color: lightskyblue;
+    padding: 20px;
+    margin-bottom: 10px;
+    max-height: max-content;
+    width: fit-content;
+    text-align: left;
+}
+
+.msg-outher-user {
+    color: black;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 20px 20px 20px 0px;
+    background-color: rgb(252, 252, 252);
+    padding: 20px;
+    margin-bottom: 10px;
+    max-height: max-content;
+    width: fit-content;
+    text-align: left;
+}
+
+.msg-server {
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 20px 20px 20px 0px;
+    width: max-content;
+    margin: 10px 0px;
+    padding: 10px;
+    background-color: rgb(252, 252, 252);
+    max-width: 90%;
+    color: lightcoral;
+}
+
+.room {
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
+    margin: 20px 0px 20px 0px;
+    padding: 20px;
+}
+
+.roomName {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.inLimit_yes {
+    border-style: solid;
+    border-width: 0px;
+    border-radius: 25px;
+    padding: 5px;
+    display: inline-block;
+    font-weight: 800;
+    color: darkblue;
+    background-color: greenyellow;
+}
+
+.inLimit_no {
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 25px;
+    padding: 5px;
+    display: inline-block;
+    color: aliceblue;
+    background-color: brown;
+}
+
+.roomLimite {
+    display: inline-block;
+}
+
+.inRoom {
+    display: inline-block;
+}
+
+#chatBar-buttonSend {
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    margin: 0px 0px 0px 0px;
+    width: max-content;
+    
+}
+
+#sender {
+    
+}
+
+#buttonSend {
+    height: 81px;
+    top: 86.5%;
+    position: absolute;
+}
+
+#room-container {
+    border-width: 0px;
+    border-style: solid;
+    border-radius: 10px;
+    width: max-content;
+}
+
+#container {
+    background-color: aliceblue;
+    width: max-content;
+    position: absolute;
+    padding: 20px;
+    left: 35%;
+}
+
+#chat-container {
+    background-image: url("https://media.istockphoto.com/vectors/set-of-contact-us-and-support-icons-vector-pattern-design-vector-id1183632265?k=20&m=1183632265&s=612x612&w=0&h=WrdRJWCQdgJbjFt9xaJ1ycGps16x2Xb7M1EwcfNFNcQ=") ;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    height: 500px;
+    width: 108%;
+    padding: 10px;
+    overflow-y: scroll;
+    flex-direction: column;
+}
+
+#swirhRoom-container {
+    border-width: 0px;
+    border-style: solid;
+    border-radius: 10px;
+    background-color: aliceblue;
+    width: fit-content;
+    padding: 0px 20px 0px 20px;
+}

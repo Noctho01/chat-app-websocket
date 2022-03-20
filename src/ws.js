@@ -16,40 +16,89 @@ const WebSocketRuning = (app) => {
 
     server.on('connection', (ws, request) => {
 
-        ws.header = new ClientHeader();
-        ws.header.clientId = request.headers['sec-websocket-key'];
-        ws.header.clientName = 'Vinicius';
-        ws.header.room = rooms[0].roomName;
-
-        rooms[0].addClientToPlace(ws);
-
-        let header = { type: 'list-rooms' }
-        let content = { rooms: [] }
+        let serverHeader = { type: 'list-rooms' }
+        let serverContent = { rooms: [] }
 
         rooms.forEach(room => {
-            content.rooms.push({
+            serverContent.rooms.push({
                 roomName: room.roomName,
-                inRoom: room.places.length,
+                inRoom: room.clients.length,
                 limitPlaces: room.limitPlaces
             });
         });
 
-        ws.send(message(header, content));
+        ws.send(message(serverHeader, serverContent));
 
-        onmessage(ws, server);
-        onclose(ws, server);
+        ws.on('message', msg => {
+            const data = JSON.parse(msg.toString());
+            switch(data.header.type) {
+                case 'room-is-defined':
+                    roomIsDefinedCase(data);
+                    break;
+                case 'msg-to-room':
+                    msgToRoomCase(data);
+                    break;
+            }
+        });
+
+        ws.on('close', () => {
+            console.log(`client ${ws.id} desconnected`);
+        });
+
+        // Case room-is-defined
+        function roomIsDefinedCase(data) {
+            // definindo dados do usuario
+            ws.header = new ClientHeader();
+            ws.header.clientId = request.headers['sec-websocket-key'];
+            ws.header.clientName = data.content.clientName;
+            ws.header.room = data.content.roomName;
+            
+            let room = rooms.find(room => room.roomName === data.content.roomName);
+            room.addClientToPlace(ws);
+
+            // enviando solicitação de acesso ao chat
+            let clientHeader = {
+                clientId : ws.header.clientId,
+                clientName : ws.header.clientName,
+                type : 'init-chat'
+            }
+            ws.send(message(clientHeader));
+        }
+
+        // Case msg-to-room
+        function msgToRoomCase(data) {
+            let idClientMsg = data.header.clientId;
+            let nameClientMsg = data.header.clientName;
+            let clientMsg = data.content.message;
+            let wsClientMsg;
+
+            server.clients.forEach(client => {
+                if (client.header.clientId === idClientMsg) {
+                    wsClientMsg = client;
+                }
+            });
+
+            rooms.forEach(room => {
+                if (room.clients.includes(wsClientMsg)) {
+                    room.clients.forEach(client => {
+                        if (client.header.clientId != idClientMsg) {
+                            let clientHeader = {
+                                clientId: idClientMsg,
+                                clientName: nameClientMsg,
+                                type: 'msg-to-client-room'
+                            }
+
+                            client.send(message(clientHeader, { message: clientMsg }));
+                            console.log('menssagem enviada')
+                        }
+                    })
+                }
+            });
+        }
     });
 }
 
-function onmessage(ws, server) {
-    ws.on('message', msg => {
-    });
-}
 
-function onclose(ws, server) {
-    ws.on('close', () => {
-        console.log(`client ${ws.id} desconnected`);
-    });
-}
+
 
 export default WebSocketRuning;
