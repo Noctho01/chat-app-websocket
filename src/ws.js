@@ -1,39 +1,25 @@
 import message from './jobs/message.js'
+import createRoom from './jobs/createRoom.js'
+import Cases from './jobs/Cases.js'
 import ClientHeader from './Domains/ClientHeader.js'
-import Rooms from './Domains/Rooms.js'
 import { WebSocketServer } from 'ws'
 
-const WebSocketRuning = (app) => {
+const WebSocketRuning = app => {
     const server = new WebSocketServer({ server: app });
-    const rooms = [];
-    const limitRooms = 3;
-
-    // creating rooms
-    for (let num=1; num <= limitRooms; num++) {
-        let roomName = 'sala' + num;
-        rooms.push(new Rooms(roomName, server));
-    }
+    const rooms = createRoom(server, 3);
 
     server.on('connection', (ws, request) => {
 
-        let serverHeader = { type: 'list-rooms' }
-        let serverContent = { rooms: [] }
-
-        rooms.forEach(room => {
-            serverContent.rooms.push({
-                roomName: room.roomName,
-                inRoom: room.clients.length,
-                limitPlaces: room.limitPlaces
-            });
-        });
-
-        ws.send(message(serverHeader, serverContent));
+        Cases.statusRooms(rooms, ws);
 
         ws.on('message', msg => {
             const data = JSON.parse(msg.toString());
+
             switch(data.header.type) {
-                case 'room-is-defined':
-                    roomIsDefinedCase(data);
+                case 'request-status-rooms':
+                    ws.send(message({type: 'response-status-rooms' }, {
+
+                    }));
                     break;
                 case 'msg-to-room':
                     msgToRoomCase(data);
