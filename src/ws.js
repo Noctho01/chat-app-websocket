@@ -72,12 +72,14 @@ const WebSocketRuning = (app) => {
             let clientMsg = data.content.message;
             let wsClientMsg;
 
+            // Pegando client socket que enviou a msg
             server.clients.forEach(client => {
                 if (client.header.clientId === idClientMsg) {
                     wsClientMsg = client;
                 }
             });
 
+            // Enviando a msg para os membros do grupo
             rooms.forEach(room => {
                 if (room.clients.includes(wsClientMsg)) {
                     room.clients.forEach(client => {
@@ -97,8 +99,5 @@ const WebSocketRuning = (app) => {
         }
     });
 }
-
-
-
 
 export default WebSocketRuning;
