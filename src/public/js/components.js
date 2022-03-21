@@ -12,34 +12,33 @@ class Components {
         `);
     }
 
-    static swithRoomContainer() {
+    static chooseRoomsContainer() {
         return (`
-            <div id="swithRoom-container">
+            <div id="chooseRooms-container">
+                <div id="set-nickname"></div>
+                <div id="rooms"></div>
             </div>
         `);
     }
 
-    static setNameUser() {
+    static setNickname() {
         return (`
-            <div id="set-name">
-                <input type="text" name="nick" id="nick" placeholder="nick name">
-                <button id="buttonNick">ok</button>
-            </div>
+            <input type="text" name="nick" id="nickname" placeholder="nick name">
+            <button id="buttonNickname">ok</button>
         `);
     }
 
     static room(room) {
-        const inLimit = room.inRoom < room.limitPlaces
-                ? "inLimit_yes"
-                : "inLimit_no"
+        const { inRoom, limitPlaces, roomName } = room;
+        const inLimit = inRoom < limitPlaces ? "inLimit_yes" : "inLimit_no"
 
         return (`
             <div class="room">
-                <div class="roomName">${room.roomName}</div>
+                <div class="roomName">${roomName}</div>
                 <div class=${inLimit}>    
-                    <div class="inRoom">${room.inRoom}</div>
+                    <div class="inRoom">${inRoom}</div>
                     /
-                    <div class="roomLimite">${room.limitPlaces}</div>
+                    <div class="roomLimite">${limitPlaces}</div>
                 </div>
             </div>
         `);
@@ -61,10 +60,10 @@ class Components {
         `);
     }
 
-    static msgOutherUserTracted(msg, userName) {
+    static msgOutherUserTracted(msg, nickname) {
         return (`
             <div class="msg-outher-user">
-                <div style="color:red">${userName}</div>
+                <div style="color:red">${nickname}</div>
                 <div>${msg}</div>
             </div>
         `);

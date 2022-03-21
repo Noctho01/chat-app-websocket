@@ -1,37 +1,51 @@
-import Cases from './cases/index.js'
-import message from '../../jobs/message.js'
+import Services from './Services.js'
 
 // connection to websocket server ws://host:port/
 const HOST = location.origin.replace(/^http/, 'ws');
 const client = new WebSocket(HOST);
 
 client.onopen = () => {
-    // instancia entidades necessarios aqui...
+    const services = new Services(client);
+    const statusRooms = { rooms: null };
+    const userContent = {
+        id: null,
+        nickname: null,
+        roomName: null
+    }
 
-    client.send(message({ type: 'request-status-rooms'}));
+    // DOO Elements
+    const container = document.getElementById("container");
 
+    // Init Process
+    services.initChooseRooms(userContent, container);
+    services.requestStatusRooms();
+
+    // Event Message On
     client.onmessage = msg => {
-        // convertendo msg
         const { header, content } = JSON.parse(msg.data);
-        const type = header.type;
+        const { type } = header;
 
-        // Switch de tipos de msg
         switch(type) {
             case 'response-status-rooms':
+                services.updateStatusRooms(userContent, content, statusRooms);
                 break;
-            case '':
+
+            case 'response-register':
+                if (content.accept) {
+                    userContent.id = content.id;
+                    services.initChatInRoom(userContent, container);
+                    return;
+                }
+                alert('Registro negado')
                 break;
-            case '':
-                break;
-            case '':
-                break;
-            case '':
-                break;
-            default:
+            
+            case 'user-msg-room':
+                services.userMsgRoom(header, content);
                 break;
         }
     }
 
+    // Event Close On
     client.onclose = () => {
         alert('Você foi desconectado do servidor, tente uma nova conexão.');
     }

@@ -10,8 +10,8 @@ As menssagens são caracterizadas em 3 tipos:
 ~~~json
 {
     "header": {
-        "clientId": "sd24fs5d6sdf4f56s4d==",
-        "clientName": "Mari-321",
+        "id": "sd24fs5d6sdf4f56s4d==",
+        "nickname": "Mari-321",
         "type": "user-msg-room"
     },
     "content": {

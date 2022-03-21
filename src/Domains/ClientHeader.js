@@ -1,27 +1,11 @@
 export default class ClientHeader {
-    constructor() {
-        this._id = null;
-        this._name = null;
-        this._room = null;
+    constructor(id, nickname, roomName) {
+        this._id = id;
+        this._nickname = nickname;
+        this._roomName = roomName;
     }
 
-    set clientName(name) {
-        this._name = name
-    }
-    set room(room) {
-        this._room = room
-    }
-    set clientId(id) {
-        this._id = id
-    }
-
-    get clientName() {
-        return this._name
-    }
-    get clientId() {
-        return this._id
-    }
-    get room() {
-        return this._room
-    }
+    get id() { return this._id }
+    get nickname() { return this._nickname }
+    get roomName() { return this._roomName }
 }

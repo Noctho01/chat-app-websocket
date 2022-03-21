@@ -9,13 +9,13 @@ export default class Rooms {
     addClientToPlace(ws) {
         if (this.clients.length < this.limitPlaces) {
             this.clients.push(ws);
-            console.log(ws.header.clientName, 'entrou na sala', this.roomName);
+            console.log(ws.header.nickname, 'entrou na sala', this.roomName);
         }
     }
 
     removeClienteToPlace(ws) {
         const index = this.clients.indexOf(ws);
         this.clients.splice(index, 1);
-        console.log(ws.header.clientName, 'foi removido da sala', this.roomName);
+        console.log(ws.header.nickname, 'foi removido da sala', this.roomName);
     }
 }
