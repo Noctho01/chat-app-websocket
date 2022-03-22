@@ -13,7 +13,7 @@ const WebSocketRuning = app => {
     server.on('connection', (ws, request) => {
         console.log(' --server-log: "server-ws got a connection"');
 
-        const services = new Services(ws);
+        const services = new Services(ws, server);
 
         // Event Message On
         ws.on('message', msg => {

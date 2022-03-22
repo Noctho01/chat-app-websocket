@@ -2,7 +2,10 @@ import message from "../jobs/message.js";
 import ClientHeader from "./ClientHeader.js";
 
 export default class Services {
-    constructor(ws) { this._ws = ws }
+    constructor(ws, server) {
+        this._ws = ws;
+        this._server = server;
+    }
     
     responseStatusRooms(rooms) {
         const header = { type: 'response-status-rooms'};
@@ -16,7 +19,12 @@ export default class Services {
             });
         });
 
-        this._ws.send(message(header, content));
+        //this._ws.send(message(header, content));
+
+        this._server.clients.forEach(client => {
+            if (!client.header) client.send(message(header, content));
+        });
+
         console.log('socket-msg: server | type: response-status-rooms ');
     }
 

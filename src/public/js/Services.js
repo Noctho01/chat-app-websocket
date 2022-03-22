@@ -44,6 +44,7 @@ export default class Services {
 
                 userContent.roomName = roomNames[i].outerText;
                 this._client.send(message({ type: 'request-register' }, userContent));
+                this.requestStatusRooms();
             });
         }
     }
