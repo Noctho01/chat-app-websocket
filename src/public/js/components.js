@@ -45,26 +45,19 @@ class Components {
     }
 
     static msgClientTracted(msg) {
-        return (`
-            <div class="msg-user">
-                <div>${msg}</div>
-            </div>
-        `);
+        return (`<div class="msg-user"><p>${msg}</p></div>`);
     }
 
     static msgServerTracted(msg) {
-        return (`
-            <div class="msg-server">
-                <div>${msg}</div>
-            </div>
-        `);
+        return (`<div class="msg-server"><p>${msg}</p></div>`);
     }
 
-    static msgOutherUserTracted(msg, nickname) {
+    static msgOutherUserTracted(msg, nickname, color) {
+
         return (`
             <div class="msg-outher-user">
-                <div style="color:red">${nickname}</div>
-                <div>${msg}</div>
+                <div style="color:${color}; opacity: 0.5">${nickname}</div>
+                <p>${msg}</p>
             </div>
         `);
     }

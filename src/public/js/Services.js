@@ -79,25 +79,12 @@ export default class Services {
 
         // Mandando menssagem
         buttonSend.addEventListener('click', () => {
-            const msg = sender.value;
-            const charEspecial = "&#13;&#10;";
-            
-            let newMsg = "";
-            let cont = 0;
+            const charQuebraLinha = "<br>";
+            const msg = sender.value
+                .replace(/ /g, "&nbsp;")
+                .replace(/\n/g, charQuebraLinha);
 
-            for (let i=0; i < (msg.length + 1); i++) {
-                if (i < msg.length) {
-                    if (cont === 39) {
-                        newMsg += charEspecial;
-                        cont = 0;
-                    } else {
-                        newMsg += msg[i];
-                        cont ++;
-                    }
-                }
-            }
-
-            chat.innerHTML += Components.msgClientTracted(newMsg);
+            chat.innerHTML += Components.msgClientTracted(msg);
             sender.value = '';
 
             chat.scrollTo(chat.scrollWidth, chat.scrollHeight + 1000);
@@ -106,10 +93,11 @@ export default class Services {
                 id: userContent.id,
                 nickname: userContent.nickname,
                 roomName: userContent.roomName,
+                color: userContent.color,
                 type: 'user-msg-server'
             }
 
-            this._client.send(message(header, { message: newMsg }));
+            this._client.send(message(header, { message: msg }));
         });
     }
 
@@ -118,8 +106,9 @@ export default class Services {
     userMsgRoom(header, content) {
         const msg = content.message;
         const nicknameUserMsg = header.nickname;
+        const colorUserMsg = header.color;
         const chat = document.getElementById("chat-container");
-        chat.innerHTML += Components.msgOutherUserTracted(msg, nicknameUserMsg);
+        chat.innerHTML += Components.msgOutherUserTracted(msg, nicknameUserMsg, colorUserMsg);
         chat.scrollTo(chat.scrollWidth, chat.scrollHeight + 1000);
     }
 }

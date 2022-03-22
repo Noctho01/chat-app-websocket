@@ -10,7 +10,8 @@ client.onopen = () => {
     const userContent = {
         id: null,
         nickname: null,
-        roomName: null
+        roomName: null,
+        color: null
     }
 
     // DOO Elements
@@ -33,6 +34,7 @@ client.onopen = () => {
             case 'response-register':
                 if (content.accept) {
                     userContent.id = content.id;
+                    userContent.color = content.color;
                     services.initChatInRoom(userContent, container);
                     return;
                 }

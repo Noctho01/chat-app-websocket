@@ -39,9 +39,12 @@ export default class Services {
         const room = rooms.find(room => room.roomName === content.roomName);
         room.addClientToPlace(this._ws);
 
+        this._ws.header.color = room.colors[room.clients.length - 1];
+
         const resContent = {
             accept: true,
-            id: this._ws.header.id
+            id: this._ws.header.id,
+            color: this._ws.header.color
         }
 
         this._ws.send(message({ type: 'response-register' }, resContent));

@@ -46,7 +46,8 @@ const WebSocketRuning = app => {
                 room.removeClienteToPlace(ws);
                 console.log(`client ${ws.header.id} desconnected`);
             }
-        
+            
+            services.responseStatusRooms(rooms);
             console.log(`client ${request.headers['sec-websocket-key']} desconnected`);
         });
     });
