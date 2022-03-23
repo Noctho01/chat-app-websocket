@@ -28,7 +28,9 @@ Responsavel por disponibilizar o uso do protocolo *websocket* na ferramenta *Nod
 
 ## 💬 Chat-App
 
-![](/docs/print.png)
+<img width="400" src="/docs/print2.png"> <img width="414" src="/docs/print3.png">
+
+<img width="900" src="/docs/print1.png">
 
 [Link para acessar ao chat-app hospedado na heroku](https://chat-app-websocket-v1.herokuapp.com/)
 
