@@ -33,7 +33,11 @@ const WebSocketRuning = app => {
                 
                 case 'user-msg-server':
                     console.log('socket-msg: client | type: user-msg-server ');
-                    services.userMsgServer(header, content, server, rooms);
+                    services.userMsgServer(header, content, rooms);
+                    break;
+                
+                case 'request-list-members':
+                    services.requestListMembers(rooms, content.roomName);
                     break;
             }
         });
@@ -43,9 +47,10 @@ const WebSocketRuning = app => {
             if (ws.header) {
                 const room = rooms.find(room => room.roomName === ws.header.roomName);
                 room.removeClienteToPlace(ws);
+                services.requestListMembers(rooms, ws.header.roomName);
                 console.log(`client ${ws.header.id} desconnected`);
             }
-            
+
             services.responseStatusRooms(rooms);
             console.log(`client ${request.headers['sec-websocket-key']} desconnected`);
         });

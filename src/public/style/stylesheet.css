@@ -1,14 +1,14 @@
 body {
-    background-color: #a8c896;
+    background-color: #3a89c9;
 }
 
 .msg-user {
     font-size: 30px;
-    color: black;
+    color: white;
     border-style: solid;
     border-width: 0px;
     border-radius: 30px 30px 0px 30px;
-    background-color: lightskyblue;
+    background-color: #3a89c9;
     padding: 20px;
     margin: 20px 20px;
     margin-left: auto; 
@@ -25,7 +25,7 @@ body {
     border-style: solid;
     border-width: 0px;
     border-radius: 30px 30px 30px 0px;
-    background-color: white;
+    background-color: #9cc4e4;
     padding: 20px;
     margin: 20px 20px;
     width: max-content;
@@ -47,8 +47,16 @@ body {
     word-break: break-word;
 }
 
+.member-icon {
+    display: inline;
+    float: left;
+    padding: 0 30px;
+    font-size: 30px;
+    background-color: #e9f2f9;
+}
+
 .room {
-    background-color: #b1e6d1;
+    background-color: #e9f2f9;
     border-radius: 10px;
     margin: 20px 0px 20px 0px;
     padding: 20px;
@@ -94,11 +102,12 @@ body {
     padding: 20px 10px 20px 10px;
     border-style: solid;
     border-width: 1px;
-    background-color: #595b5a;
+    border-color: #1b325f;
+    background-color: #1b325f;
 }
 
 #buttonSend {
-    background-color: #14c3a2;
+    background-color: #9cc4e4;
     position: relative;
     width: 100px;
     height: 50px;;
@@ -132,10 +141,10 @@ body {
 }
 
 #chat-container {
-    background-color: #b1e6d1;
+    background-color: #e9f2f9;
     background-repeat: repeat-x;
     border-style: solid;
-    border-color: black;
+    border-color: #e9f2f9;
     border-width: 1px;
     height: 80%;
     width: 950px;
@@ -160,7 +169,14 @@ body {
 }
 
 #set-nickname button {
-    background-color: #14c3a2;
+    border-color: #9cc4e4;
+    background-color: #9cc4e4;
     font-size: 30px;
     border-radius: 20px;
+    padding: 10px;
+}
+
+#list-members {
+    width: 100%;
+    height: fit-content;
 }

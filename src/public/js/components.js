@@ -2,8 +2,8 @@ class Components {
     static roomContainer() {
         return (`
             <div id="room-container">
-                <div id="chat-container">
-                </div>
+                <div id="list-members"></div>
+                <div id="chat-container"></div>
                 <div id="chatBar-buttonSend">
                     <textarea id="sender" cols="40" rows="5" maxlength="419" wrap="hard"></textarea>
                     <button id="buttonSend">SEND</button>
@@ -60,6 +60,11 @@ class Components {
                 <p>${msg}</p>
             </div>
         `);
+    }
+
+    static memberIcon(nameOutherUser, color, nameUser) {
+        const name = nameUser == nameOutherUser ? `${nameUser} (You)` : `${nameOutherUser}`;
+        return (`<div class="member-icon" style="color:${color};">${name}</div>`);
     }
 }
 

@@ -36,11 +36,17 @@ client.onopen = () => {
                     userContent.id = content.id;
                     userContent.color = content.color;
                     services.initChatInRoom(userContent, container);
+                    services.requestListMembers(userContent.roomName);
                     return;
                 }
                 alert('Registro negado')
                 break;
             
+            case 'response-list-members':
+                console.log('baba')
+                services.responseListMembers(userContent.nickname, content);
+                break;
+
             case 'user-msg-room':
                 services.userMsgRoom(header, content);
                 break;

@@ -12,6 +12,20 @@ export default class Services {
         this._client.send(message({ type: 'request-status-rooms' }));
     }
 
+    requestListMembers(roomName) {
+        this._client.send(message({ type: 'request-list-members' }, { roomName: roomName }));
+    }
+
+    responseListMembers(nickname, content) {
+        const { members } = content;
+        const listMembers = document.getElementById('list-members');
+        listMembers.innerHTML = "";
+
+        members.forEach(member => {
+            listMembers.innerHTML += Components.memberIcon(member.nickname, member.color, nickname);
+        });
+    }
+
 
     // SERVICE 2
     updateStatusRooms(userContent, content, statusRooms) {
@@ -79,25 +93,27 @@ export default class Services {
 
         // Mandando menssagem
         buttonSend.addEventListener('click', () => {
-            const charQuebraLinha = "<br>";
-            const msg = sender.value
-                .replace(/ /g, "&nbsp;")
-                .replace(/\n/g, charQuebraLinha);
+            if (sender.value != "" || sender.value != undefined || sender.value != null) {
+                const charQuebraLinha = "<br>";
+                const msg = sender.value
+                    .replace(/ /g, "&nbsp;")
+                    .replace(/\n/g, charQuebraLinha);
 
-            chat.innerHTML += Components.msgClientTracted(msg);
-            sender.value = '';
+                chat.innerHTML += Components.msgClientTracted(msg);
+                sender.value = '';
 
-            chat.scrollTo(chat.scrollWidth, chat.scrollHeight + 1000);
+                chat.scrollTo(chat.scrollWidth, chat.scrollHeight + 1000);
 
-            const header = {
-                id: userContent.id,
-                nickname: userContent.nickname,
-                roomName: userContent.roomName,
-                color: userContent.color,
-                type: 'user-msg-server'
+                const header = {
+                    id: userContent.id,
+                    nickname: userContent.nickname,
+                    roomName: userContent.roomName,
+                    color: userContent.color,
+                    type: 'user-msg-server'
+                }
+
+                this._client.send(message(header, { message: msg }));
             }
-
-            this._client.send(message(header, { message: msg }));
         });
     }
 

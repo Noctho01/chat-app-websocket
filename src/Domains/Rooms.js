@@ -3,7 +3,7 @@ export default class Rooms {
         this.roomName = roomName;
         this.server = server;
         this.limitPlaces = 4;
-        this.colors = ["red","blue", "darkgreen","darkyellow"];
+        this.colors = ["#98092b","#df931b", "#45ada8","#0a996f", "#7b6ed6", "#fd65a0", "#8e3f65", "#a8c030", "#836177"];
         this.clients = [];
     }
 
