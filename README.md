@@ -39,6 +39,32 @@ Responsavel por disponibilizar o uso do protocolo *websocket* na ferramenta *Nod
 <br>
 <br>
 
+## Rodando na localhost
+> Caso o app estejá fora do ar ou queira acessar da sua própria maquina
+
+### Clonando repositorio e acessando diretorio do projeto
+~~~
+git clone https://github.com/Noctho01/chat-app-websocket.git
+~~~
+~~~
+cd chat-app-websocket
+~~~
+
+### Instalando dependencias
+~~~
+npm i
+~~~
+
+### iniciando servidor na porta 3000
+~~~
+npm run app
+~~~
+
+*Acesse **localhost:3000/** em seu navegador*
+
+<br>
+<br>
+
 > ***Vinicius dos Santos Rodrigues***
 
 [vinicius.dev01@gmail.com](vinicius.dev01@gmail.com)
