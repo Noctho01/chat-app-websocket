@@ -1,15 +1,18 @@
 body {
-    background-color: antiquewhite;
+    background-color: #a8c896;
 }
 
 .msg-user {
+    font-size: 30px;
     color: black;
     border-style: solid;
     border-width: 0px;
-    border-radius: 20px 20px 20px 0px;
+    border-radius: 30px 30px 0px 30px;
     background-color: lightskyblue;
-    padding: 10px;
-    margin-bottom: 10px;
+    padding: 20px;
+    margin: 20px 20px;
+    margin-left: auto; 
+    margin-right: 20px;
     width: max-content;
     max-width: 400px;
     text-align: left;
@@ -17,13 +20,14 @@ body {
 }
 
 .msg-outher-user {
+    font-size: 30px;
     color: black;
     border-style: solid;
     border-width: 0px;
-    border-radius: 20px 20px 20px 0px;
-    background-color: ivory;
-    padding: 10px;
-    margin-bottom: 10px;
+    border-radius: 30px 30px 30px 0px;
+    background-color: white;
+    padding: 20px;
+    margin: 20px 20px;
     width: max-content;
     max-width: 400px;
     text-align: left;
@@ -31,11 +35,12 @@ body {
 }
 
 .msg-server {
+    font-size: 30px;
     border-style: solid;
     border-width: 0px;
     border-radius: 20px 20px 20px 20px;
     width: max-content;
-    margin: 0 auto;
+    margin: 10px auto;
     padding: 10px;
     background-color: rgb(252, 252, 252);
     color: lightcoral;
@@ -43,8 +48,7 @@ body {
 }
 
 .room {
-    border-style: solid;
-    border-width: 1px;
+    background-color: #b1e6d1;
     border-radius: 10px;
     margin: 20px 0px 20px 0px;
     padding: 20px;
@@ -63,7 +67,8 @@ body {
     display: inline-block;
     font-weight: 800;
     color: darkblue;
-    background-color: greenyellow;
+    background-color: #7cf49a;
+    margin-left: 220px;
 }
 
 .inLimit_no {
@@ -73,7 +78,8 @@ body {
     padding: 5px;
     display: inline-block;
     color: aliceblue;
-    background-color: brown;
+    background-color: #d31900;
+    margin-left: 220px;
 }
 
 .roomLimite {
@@ -85,28 +91,33 @@ body {
 }
 
 #chatBar-buttonSend {
+    padding: 20px 10px 20px 10px;
     border-style: solid;
-    border-color: red;
     border-width: 1px;
-    padding: 10px 20px 10px 20px;
-}
-
-button {
-    border-radius: 20px;
+    background-color: #595b5a;
 }
 
 #buttonSend {
-    margin: 0 auto
+    background-color: #14c3a2;
+    position: relative;
+    width: 100px;
+    height: 50px;;
+    border-radius: 0px 20px 20px 0px;
+    border-width: 0px;
+    bottom: 20px;
+    padding: 0px 20px 0px 0px;
 }
 
 #sender {
+    font-size: 30px;
     padding: 5px 10px 10px 20px;
     border-style: solid;
-    border-width: 1px;
-    border-radius: 20px;
+    border-width: 0px;
+    border-radius: 20px 0px 0px 20px;
     height: 50px;
     resize: none;
-    display: inline-block;
+    position: relative;
+
 }
 
 #room-container {
@@ -115,27 +126,41 @@ button {
     border-radius: 10px;
 }
 
-#container {
-    background-color: aliceblue;
+#container {    
     width: max-content;
     margin: 10 auto;
 }
 
 #chat-container {
-    background-image: url("https://media.istockphoto.com/vectors/set-of-contact-us-and-support-icons-vector-pattern-design-vector-id1183632265?k=20&m=1183632265&s=612x612&w=0&h=WrdRJWCQdgJbjFt9xaJ1ycGps16x2Xb7M1EwcfNFNcQ=") ;
+    background-color: #b1e6d1;
+    background-repeat: repeat-x;
     border-style: solid;
     border-color: black;
     border-width: 1px;
-    height: 500px;
-    width: 500px;
+    height: 80%;
+    width: 950px;
     padding: 10px;
     overflow-y: scroll;
 }
 
 #chooseRooms-container {
+    font-size: 50px;
     border-width: 0px;
     border-style: solid;
     border-radius: 10px;
-    background-color: aliceblue;
     padding: 0px 20px 0px 20px;
+    width: 500px;
+    height: max-content;
+}
+
+#set-nickname input {
+    border-radius: 20px;
+    padding: 10px;
+    font-size: 30px;
+}
+
+#set-nickname button {
+    background-color: #14c3a2;
+    font-size: 30px;
+    border-radius: 20px;
 }

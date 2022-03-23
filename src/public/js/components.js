@@ -45,7 +45,7 @@ class Components {
     }
 
     static msgClientTracted(msg) {
-        return (`<div class="msg-user"><p>${msg}</p></div>`);
+        return (`<div align="right" class="msg-user"><p>${msg}</p></div>`);
     }
 
     static msgServerTracted(msg) {
