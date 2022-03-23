@@ -16,7 +16,7 @@ Praticar o que estudei sobre o protocolo *websocket*.
 
 <br>
 
-## 🛠 Tolls...
+## 🛠 Tools...
 
 [Express Node.js Module](https://expressjs.com/pt-br/4x/api.html)
 Usado para criar um servidor Http para distribuir funcionalidades *client* e ancorar o *servidor* WebSocket;
