@@ -101,6 +101,7 @@ export default class Services {
 
                 chat.innerHTML += Components.msgClientTracted(msg);
                 sender.value = '';
+                sender.select();
 
                 chat.scrollTo(chat.scrollWidth, chat.scrollHeight + 1000);
 

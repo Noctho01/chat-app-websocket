@@ -1,5 +1,5 @@
 body {
-    background-color: #3a89c9;
+    background-image: url("https://media.istockphoto.com/vectors/pixel-art-star-sky-at-night-vector-id1219022871?k=20&m=1219022871&s=170667a&w=0&h=fC5EOoWrjoE8MfJGXCV_UXiFGkV4SM_vIz3IRpmpY5M=");
 }
 
 .msg-user {
@@ -53,6 +53,8 @@ body {
     padding: 0 30px;
     font-size: 30px;
     background-color: #e9f2f9;
+    margin: 0 10px;
+    border-radius: 20px 20px 0px 0px;
 }
 
 .room {
@@ -60,6 +62,7 @@ body {
     border-radius: 10px;
     margin: 20px 0px 20px 0px;
     padding: 20px;
+    opacity: 0.8;
 }
 
 .roomName {
@@ -99,11 +102,9 @@ body {
 }
 
 #chatBar-buttonSend {
-    padding: 20px 10px 20px 10px;
+    padding: 20px 10px 20px 30px;
     border-style: solid;
-    border-width: 1px;
-    border-color: #1b325f;
-    background-color: #1b325f;
+    border-width: 0px;
 }
 
 #buttonSend {
@@ -141,10 +142,10 @@ body {
 }
 
 #chat-container {
-    background-color: #e9f2f9;
+    background-color: #e9f2f980;
     background-repeat: repeat-x;
     border-style: solid;
-    border-color: #e9f2f9;
+    border-color: #e9f2f980;
     border-width: 1px;
     height: 80%;
     width: 950px;
