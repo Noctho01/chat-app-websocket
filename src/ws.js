@@ -41,7 +41,6 @@ const WebSocketRuning = app => {
         // Event Close On
         ws.on('close', () => {
             if (ws.header) {
-                console.log(ws.header);
                 const room = rooms.find(room => room.roomName === ws.header.roomName);
                 room.removeClienteToPlace(ws);
                 console.log(`client ${ws.header.id} desconnected`);
