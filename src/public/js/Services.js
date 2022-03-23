@@ -93,7 +93,7 @@ export default class Services {
 
         // Mandando menssagem
         buttonSend.addEventListener('click', () => {
-            if (sender.value != "" || sender.value != undefined || sender.value != null) {
+            if (sender.value != "" || sender.value != " " || sender.value != undefined || sender.value != null) {
                 const charQuebraLinha = "<br>";
                 const msg = sender.value
                     .replace(/ /g, "&nbsp;")

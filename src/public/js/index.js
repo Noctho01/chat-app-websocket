@@ -43,7 +43,6 @@ client.onopen = () => {
                 break;
             
             case 'response-list-members':
-                console.log('baba')
                 services.responseListMembers(userContent.nickname, content);
                 break;
 

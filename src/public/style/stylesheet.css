@@ -16,7 +16,7 @@ body {
     width: max-content;
     max-width: 400px;
     text-align: left;
-    word-break: break-word;
+    word-break: break-all;
 }
 
 .msg-outher-user {
@@ -31,7 +31,7 @@ body {
     width: max-content;
     max-width: 400px;
     text-align: left;
-    word-break: break-word;
+    word-break: break-all;
 }
 
 .msg-server {
@@ -44,7 +44,7 @@ body {
     padding: 10px;
     background-color: rgb(252, 252, 252);
     color: lightcoral;
-    word-break: break-word;
+    word-break: break-all;
 }
 
 .member-icon {
